@@ -1,60 +1,55 @@
-# purecodewar
-*another terminal text editor, now with extra mediocrity*
+# purecode
+*another terminal text editor, now extra mediocre*
 
-Purecode is largely a practice for me in writing more advanced Python code, with actual thought put in, even though the results may not be so fantastic. The goals are the following:
+Purecode is largely a practice for me in writing more advanced Python code, trying to think through the process more. The goals are the following:
 - Extensibility
 - Simplicity
 - Efficiency
 
-These are all rather vague, but code will likely be fairly simple since I don't have the skills, and at least it'll be documented well. The efficiency is hypothetically a product of the simplicity. Extensibility? Well, that'll be covered in the next part.
+Sound like marketing speak? Sure does. Most are fairly ironic given how this is Python, which is clearly known for its legendary efficiency and simplicity. The idea is to have simple code and by extension have it run efficiently.
 
-Eventually I'll move to something that isn't the bloated whale of Python, but that'll be soon (tm). NOT JAVASCRIPT! 
+Extensibility is covered in the next section.
+
+Eventually I'll move to a worthwhile language (e.g. C/C++), but for now, Python will have to do. Javascript isn't an option, since it isn't worthwhile.
 
 I'll have to learn the following:
 - Curses programming
-- Anything OS-related
-- String Buffers: Why they exist and how to implement them
-- UNIT TESTING \o/
+- OS-related programming (e.g. pipes, stdin/out control, subprocesses, maybe threads.)
+- Text buffering
+- Unit testing (inevitably)
 - Logging
-- More advanced topics
+- Algorithm design, data structure design.
+
 ## How it *should* work
 
-Purecode working at all is a stretch of the imagination for sure, but I'll try to explain as clearly as possible what it should do.
-
-The base is based on a series of utilities, within the ``utils`` folder. Here's a list with a mediocre description:
-
+The base is based on a series of utilities, within the ``utils`` folder:
+- Buffer: Store, load, modify, and save a body of text.
 - Search: Search a body of text using regex, and return match counts, beginnings and ends of each match.
-- Modify: Modify specific components of a body of text, pretty self-explanatory.
-- Delete: Delete specific components of a body of text, probably redundant.
-- External: Run commands within the terminal, and get their output.
+- External: Run commands within the terminal, and get their output. Basically a terminal emulator tacked on.
 
-All of these will do what they need, run output through whatever applicable add-ons there are, and then output a series of final modifications. This is so that redundant changes or changes that can be grouped into one don't slow things down as much. 
+Add-ons require further thought. Likely, it'll have to involve either a loop to influence each utility (if it's an "always on" behaviour), or some sort of external trigger (if it's an "occasional" behaviour.)
 
-Input -> process -> add-ons -> package and output
-Combinations of the utilities will be used to do extra things. For example:
-- Search and replace: Combine the search and modify/delete utilities
-- In-editor terminal: Run AND get output from the terminal
-- etc.
+Like this: Input -> process -> add-ons -> package and output
 
-Here's a list of some features I'd like to have:
+Base features:
 - Search, search and replace
 - File manager built in?
-- Unified command prompt that sends commands to both the OS and purecode, requires some thonk
-- Auto-parenthesis completion, with some sort of unique way of explicitly showing which ones are impacted.
+- Unified command prompt that sends commands to both OS and editor.
+- Auto-parenthesis completion, explicitly showing how many nested elements there are and so on.
 - Current buffer statistics (lines, columns, spaces, etc.)
-- Support for user and included scripts that do extra stuff (tm)
-  - Linter
+- Configuration via config file.
+- Autocomplete???
+- Support for user and included scripts that handle additional functionality
+  - Linting
   - Source control
   - Syntax highlighting
   - Selection from the system clipboard, and saving to a temporary clipboard.
 
-So really, hypothetically, you could run purecode without the UI. Except that would probably be a big pain, and you wouldn't really want to do that.
+It'll likely be possible (although questionably logical) to run purecode without a GUI. 
 
 The GUI Command interface will be within the folder ``gui_utils``. There will be a few simple functions that can be expanded by extensions and the like.
 - Bottom bar class with ability to modify the text and a variety of parameters.
-- Main text window class with ability to modify text and add appearance :D
-
-I'll probably add more in as needed, since the feature set will likely balloon but for now that's it!
+- Main text window class with ability to modify text and add appearance
 
 TODO: File system buffer?
-Unique strictly rectangular selection?
+Unique strictly rectangular selection?  
